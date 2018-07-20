@@ -132,7 +132,14 @@ void event_dispatcher_tcp(string inp, int fd)   //Initiator / Event dispatcher
   } 
   catch (const std::out_of_range& e) 
   {
+    string ts;
+    char tc[30];
     std::cout << "no handler for " << inp << '\n';
+    ts = "NO HANDLER FOUND FOR => ";
+    ts += inp;
+    ts += "\n";
+    strcpy(tc, ts.c_str());
+    send(fd, tc, strlen(tc), 0);
   }
 }
 
